@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
 
 #define MAX_SIZE 1 << 13
 #define PREFIX_LENGTH 14
@@ -24,22 +22,20 @@ int main(){
     char str[MAX_SIZE];
     int i = 0;
     int j = 0;
+    int size = 0;
     uint8_t map[26];
     memset(map, 0, 26);
 
     while((c = fgetc(file)) != EOF){
-        str[i] = c;
-        i++;
+        str[size] = c;
+        size++;
     }
     
-    i = 0;
-    j = i;
     int xj = 0;
     int xi = 0;
     int result = 0;
 
-    while(j < strlen(str)){
-        
+    while(j < size){     
         xj = get_index(str[j]);
         map[xj]++;
         j++;
@@ -52,10 +48,7 @@ int main(){
             map[xi]--;
             i++;
         }
-
-
     }
     printf("result %d\n", result);
-
     return 0;
 }
