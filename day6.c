@@ -4,7 +4,7 @@
 
 
 #define MAX_SIZE 1 << 13
-#define PREFIX_LENGTH 4
+#define PREFIX_LENGTH 14
 #define get_index(c) c - 'a';
 
 typedef unsigned char uint8_t;
@@ -40,20 +40,19 @@ int main(){
 
     while(j < strlen(str)){
         
+        xj = get_index(str[j]);
+        map[xj]++;
+        j++;
         if(j - i >= PREFIX_LENGTH){
             if(all_distinct(map, 26)){
-                result = j + 1;
+                result = j;
                 break;
             }
             xi = get_index(str[i]);
             map[xi]--;
             i++;
-            xi = get_index(str[i]);
-            map[xi]++;
         }
-        xj = get_index(str[j]);
-        map[xj]++;
-        j++;
+
 
     }
     printf("result %d\n", result);
